@@ -11,9 +11,14 @@ node {
        sh 'npm test'
      }
    }
+   stage('Credenciales') {
+     steps{
+     sh docker login -u lwettell -p leanna1911
+     }
+   }
    stage('Docker Build & Push') {
      docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
-      def nuestraapp = docker.build("macloujulian/nodejsapp:${gitcommit}", ".")
+      def nuestraapp = docker.build("lwettell/nodejsapp:${gitcommit}", ".")
       nuestraapp.push()
      }
    }
