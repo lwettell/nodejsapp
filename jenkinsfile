@@ -13,7 +13,8 @@ node {
    }
    stage('Credenciales') {
      steps{
-     sh docker login -u lwettell -p leanna1911
+     sh echo 'credenciales'
+     sh 'docker login -u lwettell -p leanna1911'
      }
    }
    stage('Docker Build & Push') {
