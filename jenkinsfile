@@ -9,8 +9,8 @@ node {
      nodejs(nodeJSInstallationName: 'nodejs') {
        sh 'npm install --only=dev'
        sh 'npm test'
-     }
-      stage('Docker Build & Push') {
+   }
+   stage('Docker Build & Push') {
      docker.withRegistry('https://registry.hub.docker.com', 'docker') {
       def nuestraapp = docker.build("lwettell/nodejsapp:${gitcommit}", ".")
       nuestraapp.push()
