@@ -10,12 +10,8 @@ node {
        sh 'npm install --only=dev'
        sh 'npm test'
      }
-   }
-   stage('Credenciales') {
-     sh 'docker login -u lwettell -p leanna1911'
-     }
-   stage('Docker Build & Push') {
-     docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
+      stage('Docker Build & Push') {
+     docker.withRegistry('https://registry.hub.docker.com', 'docker') {
       def nuestraapp = docker.build("lwettell/nodejsapp:${gitcommit}", ".")
       nuestraapp.push()
      }
