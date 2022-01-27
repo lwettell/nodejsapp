@@ -13,7 +13,7 @@ node {
    }
    stage('Docker Build & Push') {
      docker.withRegistry('https://hub.docker.com/repository/docker/lwettell/nodejsapp', 'docker') {
-      def nuestraapp = docker.build("lwettell/nodejsapp", ".")
+      def nuestraapp = docker.build("lwettell/nodejsapp:${gitcommit}", ".")
       nuestraapp.push()
      }
    }
